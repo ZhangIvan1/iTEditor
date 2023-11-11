@@ -8,6 +8,10 @@ fn to_ctrl_byte(c: char) -> u8{
     byte & 0b0001_1111
 }
 
+fn die(e: std::io::Error){
+    panic!(e);
+}
+
 fn main() {
     let _stdout = stdout().into_raw_mode().unwrap();
 
@@ -16,6 +20,9 @@ fn main() {
         let c = b as char;
         if c.is_control(){
             println!("{:?} \r", b);
+
+            //println!("{:#b} \r", b);
+            //println!("{:#b} \r", b & 0b0001_1111);
         } else {
             println!("{:?} ({})\r", b, c);
         }
