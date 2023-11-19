@@ -1,3 +1,5 @@
+use std::fmt::format;
+
 use crate::Terminal;
 use termion::event::Key;
 
@@ -58,14 +60,22 @@ impl Editor {
         for row in 0..height - 1 {
             Terminal::clear_current_line();
             if row == height / 3 {
-                let welcome_messgae = format!("iTEditor -- version {}\r", VERSION);
-                let width =
-                    std::cmp::min(self.terminal.size().width as usize, welcome_messgae.len());
-                println!("{}\r", &welcome_messgae[..width])
+                self.draw_welcome_message();
             } else {
                 println!("~\r")
             }
         }
+    }
+
+    fn draw_welcome_message(&self) {
+        let mut welcome_message = format!("iTEditor -- version {}\r", VERSION);
+        let width = self.terminal.size().width as usize;
+        let len = welcome_message.len();
+        let padding = width.saturating_sub(len) / 2;
+        let spaces = " ".repeat(padding.saturating_sub(1));
+        welcome_message = format!("~{}{}", spaces, welcome_message);
+        welcome_message.truncate(width);
+        println!("{}\r", welcome_message);
     }
 }
 
