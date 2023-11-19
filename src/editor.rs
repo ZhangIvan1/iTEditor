@@ -1,12 +1,16 @@
-use std::fmt::format;
-
 use crate::Terminal;
 use termion::event::Key;
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
+
+struct Position {
+    x: usize,
+    y: usize,
+}
 pub struct Editor {
     should_quit: bool,
     terminal: Terminal,
+    cursor_position: Position,
 }
 
 impl Editor {
@@ -28,6 +32,7 @@ impl Editor {
         Self {
             should_quit: false,
             terminal: Terminal::default().expect("Failed to initialize terminal"),
+            cursor_position: Position { x: 0, y: 0 },
         }
     }
 
