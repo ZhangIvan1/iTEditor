@@ -1,15 +1,15 @@
 #![allow(non_snake_case)]
 
-mod editor;
-mod terminal;
-mod row;
 mod document;
+mod editor;
+mod row;
+mod terminal;
 
+pub use document::Document;
 use editor::Editor;
-pub use terminal::Terminal;
 pub use editor::Position;
 pub use row::Row;
-pub use document::Document;
+pub use terminal::Terminal;
 
 fn main() {
     Editor::default().run()
