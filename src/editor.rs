@@ -115,7 +115,7 @@ impl Editor {
         let height = self.terminal.size().height;
         for terminal_row in 0..height - 1 {
             Terminal::clear_current_line();
-            if let Some(row) = self.document.row(terminal_row as usize) {
+            if let Some(row) = self.document.row(terminal_row as usize + self.offset.y) {
                 self.draw_row(row);
             } else if self.document.is_empty() && terminal_row == height / 3 {
                 self.draw_welcome_message();
@@ -137,8 +137,9 @@ impl Editor {
     }
 
     pub fn draw_row(&self, row: &Row) {
-        let start = 0;
-        let end = self.terminal.size().width as usize;
+        let start = self.offset.x;
+        let width = self.terminal.size().width as usize;
+        let end = self.offset.x + width;
         let row = row.render(start, end);
         println!("{}\r", row)
     }
