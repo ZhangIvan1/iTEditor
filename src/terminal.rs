@@ -36,7 +36,7 @@ impl Terminal {
     }
 
     pub fn cursor_position(position: &Position) {
-        let Position { mut x, mut y } = position;
+        let Position { x, y } = position;
         let x = x.saturating_add(1);
         let y = y.saturating_add(1);
         let x = x as u16;
