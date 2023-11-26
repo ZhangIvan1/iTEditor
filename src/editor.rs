@@ -16,6 +16,7 @@ pub struct Editor {
     terminal: Terminal,
     cursor_position: Position,
     document: Document,
+    offset: Position,
 }
 
 impl Editor {
@@ -47,6 +48,7 @@ impl Editor {
             terminal: Terminal::default().expect("Failed to initialize terminal"),
             cursor_position: Position::default(),
             document,
+            offset: Position::default(),
         }
     }
 
