@@ -8,8 +8,8 @@ use termion::color;
 use termion::event::Key;
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
-const STATUS_BG_COLOR: color::Rgb = color::Rgb(239, 239, 239);
-const STATUS_FG_COLOR: color::Rgb = color::Rgb(63, 63, 63);
+const STATUS_BG_COLOR: color::LightWhite = color::LightWhite;
+const STATUS_FG_COLOR: color::Black = color::Black;
 
 #[derive(Default)]
 pub struct Position {
