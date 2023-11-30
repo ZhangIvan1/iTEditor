@@ -1,6 +1,7 @@
-use crate::Row;
 use crate::Position;
+use crate::Row;
 use std::fs;
+use std::io::SeekFrom;
 
 #[derive(Default)]
 pub struct Document {
@@ -38,6 +39,15 @@ impl Document {
         } else if at.y < self.len() {
             let row = self.rows.get_mut(at.y).unwrap();
             row.insert(at.x, c);
+        }
+    }
+
+    pub fn delete(&mut self, at: &Position) {
+        if at.y >= self.len() {
+            return;
+        } else {
+            let row = self.rows.get_mut(at.y).unwrap();
+            row.delete(at.x);
         }
     }
 }
