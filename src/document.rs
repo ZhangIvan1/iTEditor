@@ -1,7 +1,6 @@
 use crate::Position;
 use crate::Row;
 use std::fs;
-use std::io::SeekFrom;
 
 #[derive(Default)]
 pub struct Document {
