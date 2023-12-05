@@ -229,6 +229,7 @@ impl Editor {
         self.cursor_position = Position { x, y }
     }
 
+    #[allow(clippy::integer_division, clippy::integer_arithmetic)]
     fn draw_rows(&self) {
         let height = self.terminal.size().height;
         for terminal_row in 0..height {
@@ -250,6 +251,7 @@ impl Editor {
         let mut welcome_message = format!("iTEditor -- version {}\r", VERSION);
         let width = self.terminal.size().width as usize;
         let len = welcome_message.len();
+        #[allow(clippy::integer_arithmetic, clippy::integer_division)]
         let padding = width.saturating_sub(len) / 2;
         let spaces = " ".repeat(padding.saturating_sub(1));
         welcome_message = format!("~{}{}", spaces, welcome_message);
